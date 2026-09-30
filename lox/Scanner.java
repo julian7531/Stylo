@@ -49,7 +49,7 @@ class Scanner{
 			case '.': addToken(DOT); break;
 			case '-': addToken(MINUS); break;
 			case '+': addToken(PLUS); break;
-			case ';': addToken(SEMICOLON); break;
+			case ';': addToken(SEMI_COLON); break;
 			case '*': addToken(STAR); break;
 
 			// the following statements just differentiate between tokens that have 1-2 characters
@@ -63,9 +63,9 @@ class Scanner{
 			case '/': 
 				  if (match('/')){
 					  while (peek() != '\n' && !isAtEnd()){
-						  advance;
+						  advance();
 					  }
-				  }else
+				  }else{
 					  addToken(SLASH);
 				  }
 				  break;
@@ -83,7 +83,7 @@ class Scanner{
 			default: 
 				  if (isDigit(c)){
 					  number();
-				  }else if (isAlpha(c){
+				  }else if (isAlpha(c)){
 					  identifier();
 				  }
 				  else {
@@ -100,7 +100,7 @@ class Scanner{
 
 		String text = source.substring(start, current);
 		TokenType type = keywords.get(text);
-		if (type == NULL) type = IDENTIFIER;
+		if (type == null) type = IDENTIFIER;
 			
 		addToken(type);
 	}
@@ -110,13 +110,13 @@ class Scanner{
 	}
 	private void number(){
 		while (isDigit(peek())){
-			advance;
+			advance();
 		}
 
 		if (peek() == '.' && isDigit(peekNext())){
 			advance();
 			while (isDigit(peek())){
-				advance;
+				advance();
 			}
 		}
 
@@ -126,20 +126,19 @@ class Scanner{
 	
 	private void string(){
 		while (peek() != '"' && !isAtEnd()){
-			if (peek() == '\n\') line++;
+			if (peek() == '\n') line++;
 			advance();
 		}
 		if (isAtEnd()){
-			Lox.error(line, "unterminated string";
+			Lox.error(line, "unterminated string");
 			return;
+
+		}
 
 			advance();
 			String value = source.substring(start + 1 , current -1);
 			addToken(STRING, value);
-		}
-
-
-
+	}
 
 
 	private boolean match(char expected){
@@ -172,7 +171,7 @@ class Scanner{
 	//isAlpha() checks whether the 
 	private boolean isAlpha(char c){
 	return (c>= 'a' && c <= 'z') || 
-		(c <= 'A' && c <= 'Z') ||
+		(c >= 'A' && c <= 'Z') ||
 		c == '_';
 	}
 
@@ -188,7 +187,7 @@ class Scanner{
 		keywords.put("else" , ELSE);
 		keywords.put("false" , FALSE);
 		keywords.put("for" , FOR);
-		keywords.put("fun " , FUN);
+		keywords.put("fun" , FUN);
 		keywords.put("if" , IF);
 		keywords.put("nil" , NIL);
 		keywords.put("or" , OR);

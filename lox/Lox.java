@@ -2,9 +2,9 @@ package lox;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
+import java.nio.charset.Charset; 
 import java.nio.file.Files;
-import java.util.List;
+import java.util.List; import java.nio.file.Path; import java.nio.file.Paths;
 
 //The scanners job is to look at individual characters and seperate those characters into smaller sequences known as lexemes. Lexemes are however only the raw substrings of the source code
 
@@ -17,7 +17,7 @@ public class Lox{
 			System.out.println("Usage: jlox [script]");
 			System.exit(64); // what does this 64 mean?
 		}else if (args.length == 1){
-			runFile(ags[0]); // what does runFile do?
+			runFile(args[0]); // what does runFile do?
 		}
 		else{
 			runPrompt();
@@ -41,7 +41,7 @@ public class Lox{
 
 		for (;;){
 			System.out.print("> ");
-			String line = read.readLine();
+			String line = reader.readLine();
 			if (line == null){
 				break;
 			}
@@ -50,7 +50,6 @@ public class Lox{
 
 		}
 
-		run(line);
 		hadError = false;// we reset hadError back to false
 	}
 
@@ -73,5 +72,5 @@ public class Lox{
 	private static void report(int line, String where, String message){
 		System.err.println("[line " + line + "] Error" + ": " + message);
 		hadError = true;
-
+	}
 }
