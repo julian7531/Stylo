@@ -4,6 +4,7 @@ import Stylo.Enviroment.Environment;
 
 public abstract class Stmt {
     public abstract <R> R accept(Visitor<R> visitor);
+    // Nested Stmt classes here...
 
     public interface Visitor<R> {
         final Environment globals = new Environment();
@@ -27,4 +28,3 @@ public abstract class Stmt {
     }
 
 }
-

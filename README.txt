@@ -1,22 +1,25 @@
-Notes:
-every <package> statement at the start of the class shows which file its in
+Compiling code:
+        Bash (linux):
+                javac -d out $(find . -name "*.java")
 
-TODO:
-6.  Parsing expressions:    J
-        Parser.java and its methods
-        Changes to be made in Lox.java as well
-7.  Evaluating Expressions  N
-        Interpreter.hava and its methods
-        changes to be made in Lox.java
-8.  Statements and state:   J+N
+                After comilation:
+                        java -cp out Stylo.Stylo
 
-9.  Control flow
-10. Functions
-11. Resolving and binding
-12. Classes
-13. Inheritance
+        Powershell (windows):
+                Remove-Item -Recurse -Force out -ErrorAction SilentlyContinue
+                New-Item -ItemType Directory -Name out
 
-Completed:
-4.  Scanning
-5.  Representing Code:
-yo
+                javac -d out (Get-ChildItem -Recurse -Filter *.java | ForEach-Object { $_.FullName })
+
+                After compilation:
+                        java -cp out Stylo.Stylo
+
+
+
+Running a script:
+        bash (linux):
+                java -cp out Stylo.Stylo filename.stylo
+
+
+        Powershell (windows):
+                java -cp out Stylo.Stylo test.stylo

@@ -14,4 +14,3 @@ public class Block extends Stmt {
         return visitor.visitBlockStmt(this);
     }
 }
-

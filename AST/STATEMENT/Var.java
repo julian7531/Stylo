@@ -17,4 +17,3 @@ public class Var extends Stmt {
         return visitor.visitVarStmt(this);
     }
 }
-

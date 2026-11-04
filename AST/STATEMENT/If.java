@@ -18,4 +18,3 @@ public class If extends Stmt {
         return visitor.visitIfStmt(this);
     }
 }
-

@@ -14,4 +14,3 @@ public class Print extends Stmt {
         return visitor.visitPrintStmt(this);
     }
 }
-

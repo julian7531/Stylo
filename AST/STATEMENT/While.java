@@ -16,4 +16,3 @@ public class While extends Stmt {
         return visitor.visitWhileStmt(this);
     }
 }
-

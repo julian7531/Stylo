@@ -21,4 +21,3 @@ public class Class extends Stmt {
         return visitor.visitClassStmt(this);
     }
 }
-
